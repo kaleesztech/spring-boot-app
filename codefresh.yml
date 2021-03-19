@@ -10,6 +10,7 @@ steps:
     stage: prepare
     type: git-clone
     repo: 'spring-boot-app'
+    git: 'kaleesztech'
     revision: master
   run_unit_tests:
     title: Compile/Unit test
