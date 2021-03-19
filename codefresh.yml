@@ -38,8 +38,10 @@ steps:
           ports:
             - 8080
       readiness:
-        timeoutSeconds: 30
+        timeoutSeconds: 60
         periodSeconds: 15
-        image: byrnedo/alpine-curl
-        commands:
-          - "curl http://my-spring-app:8080/"
+      composition_candidates:
+        my-spring-app:
+          image: byrnedo/alpine-curl
+          commands:
+            - "curl http://my-spring-app:8080/"
