@@ -33,7 +33,6 @@ steps:
      - mvn -Dmaven.repo.local=/codefresh/volume/m2_repository verify -Dserver.host=http://my-spring-app
     services:
       composition:
-        version: '2'
         my-spring-app:
           image: '${{build_app_image}}'
           ports:
