@@ -33,6 +33,7 @@ steps:
      - mvn -Dmaven.repo.local=/codefresh/volume/m2_repository verify -Dserver.host=http://my-spring-app
     services:
       composition:
+        version: '2'
         my-spring-app:
           image: '${{build_app_image}}'
           ports:
@@ -41,7 +42,7 @@ steps:
         timeoutSeconds: 60
         periodSeconds: 15
       composition_candidates:
-        my-spring-app:
+        test_service:
           image: byrnedo/alpine-curl
           commands:
             - "curl http://my-spring-app:8080/"
