@@ -43,3 +43,10 @@ steps:
         image: byrnedo/alpine-curl
         commands:
           - "curl http://my-spring-app:8080/"
+   my_integration_tests:
+    image: '${{build_app_image}}'
+    title: "Integration tests1"
+    commands:
+      - 'echo start testing my app'
+    services:
+      composition: 'docker-compose.yml'
