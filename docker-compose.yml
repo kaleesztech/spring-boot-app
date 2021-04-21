@@ -2,3 +2,7 @@ my_backend_app:
           image: nginx:latest
           ports:
             - 80
+postgres_db
+          image: postgres
+          ports:
+            - 5432 
