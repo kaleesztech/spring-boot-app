@@ -34,3 +34,25 @@ kafka:
     - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
   links:
     - zookeeper
+reference-domain-service:
+  container_name: '${{CF_REPO_NAME}}'
+  image: '${{BuildDockerImage}}'
+  volumes:
+    - './test/secrets/secrets.properties:/data/secrets.properties'
+  ports:
+    - 9102
+  environment:
+    - 'SPRING_CLOUD_STREAM_KAFKA_BINDER_ERS=kafka:9092'
+    - SPRING_DATA_MONGODB_HOST=mongodb
+    - 'SPRING_KAFKA_PROPERTIES_BOOTSTRAP_SERVERS=kafka:9092'
+    - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/reference-db'
+    - SPRING_DATASOURCE_USERNAME=postgres
+    - SPRING_DATASOURCE_PASSWORD=postgres
+    - SPRING_CLOUD_STREAM_KAFKA_BINDER_AUTOCREATETOPICS=true
+    - SPRING_DATA_MONGODB_DATABASE=locations_db
+    - SPRING_DATA_MONGODB_PORT=27017
+    - SPRING_DATA_MONGODB_USERNAME=my-user
+    - SPRING_DATA_MONGODB_PASSWORD=my-password
+    - SECRETSVOL=/data/
+  links:
+    - kafka
