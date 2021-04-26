@@ -1,7 +1,3 @@
-my_backend_app:
-          image: nginx:latest
-          ports:
-            - 80
 postgres:
           image: postgres
           container_name: postgres
@@ -31,7 +27,7 @@ kafka:
             - ALLOW_PLAINTEXT_LISTENER=yes
             - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
             - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
-            - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://localhost:9092,EXTERNAL://localhost:9093
+            - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
             - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
-          links:
+          depends_on:
             - zookeeper
