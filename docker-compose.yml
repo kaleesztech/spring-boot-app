@@ -60,6 +60,6 @@ services:
       - kafka
   newman_component_test:
     image: iflavoursbv/newman-alpine
-    command: bash -c "pwd && ls -lrt'
+    command: bash -c "pwd && ls -lrt"
     links: 
       - reference-domain-service
