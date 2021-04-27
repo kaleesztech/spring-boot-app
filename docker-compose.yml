@@ -56,7 +56,7 @@ services:
       - SPRING_DATA_MONGODB_USERNAME=my-user
       - SPRING_DATA_MONGODB_PASSWORD=my-password
       - SECRETSVOL=/data/
-    links:
+    depends_on:
       - kafka
   newman_component_test:
     image: iflavoursbv/newman-alpine
