@@ -1,7 +1,7 @@
 version: "1.0"
 kind: step-type
 metadata:
-  name: zilkies3/composition
+  name: zilkies3/composition-updated
   version: 0.0.1
   title: ComponentTesting
   isPublic: false
@@ -24,7 +24,6 @@ metadata:
         ComponentTesting:
           title: Running component test
           stage: component-test
-          type: component-testing
           image: "iflavoursbv/newman-alpine"
           arguments:
             WCF_PROJECT_TYPE: ${{WCF_PROJECT_TYPE}}
