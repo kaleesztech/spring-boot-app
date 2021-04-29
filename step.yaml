@@ -25,6 +25,10 @@ metadata:
           title: Running component test
           stage: component-test
           image: "iflavoursbv/newman-alpine"
+          commands:
+            - |-
+              pwd
+              ls -lrt
           arguments:
             WCF_PROJECT_TYPE: ${{WCF_PROJECT_TYPE}}
             WCF_SKIP_DOCKER_BUILD: ${{WCF_SKIP_DOCKER_BUILD}}
