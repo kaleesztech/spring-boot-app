@@ -1,0 +1,85 @@
+version: "1.0"
+kind: step-type
+metadata:
+  name: zilkies3/composition
+  version: 0.0.1
+  title: ComponentTesting
+  isPublic: false
+  description: Run a docker-compose.yml composition as a pipeline step.
+  sources: 
+    - 'https://github.com/kaleesztech/spring-boot-app'
+  stage: incubating
+  official: false
+  categories:
+    - testing
+  icon:
+    type: svg
+    url: 'https://static.wikia.nocookie.net/logopedia/images/e/e3/Wawa_Inc.svg'
+    background: "#E9FFFD"
+  maintainers:
+    - name: EN2
+  examples:
+    - description: Run a docker-compose.yml composition as a pipeline step.
+      workflow:
+        ComponentTesting:
+          title: Running component test
+          stage: component-test
+          type: component-testing
+          image: "iflavoursbv/newman-alpine"
+          arguments:
+            WCF_PROJECT_TYPE: ${{WCF_PROJECT_TYPE}}
+            WCF_SKIP_DOCKER_BUILD: ${{WCF_SKIP_DOCKER_BUILD}}
+            COMPONENT_TEST: ${{COMPONENT_TEST}}
+spec:
+  arguments: |-
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "definitions": {},
+        "type": "object",
+        "additionalProperties": true,
+        "patterns": [],
+        "required": [
+            "WCF_PROJECT_TYPE", 
+            "WCF_SKIP_DOCKER_BUILD", 
+            "COMPONENT_TEST"
+            ],
+        "properties": {
+            "WCF_PROJECT_TYPE": {
+                "type": "string",
+                "description": "Test"
+            },
+            "WCF_SKIP_DOCKER_BUILD": {
+                "type": "boolean",
+                "description": "Test1"
+            },
+            "COMPONENT_TEST": {
+                "type": "boolean",
+                "description": "Test3"
+            }
+        }
+    }
+
+  steps:
+    main:
+      ComponentTesting:
+          title: Running component test
+          stage: component-test
+          image: "iflavoursbv/newman-alpine"
+          arguments:
+            WCF_PROJECT_TYPE: ${{WCF_PROJECT_TYPE}}
+            WCF_SKIP_DOCKER_BUILD: ${{WCF_SKIP_DOCKER_BUILD}}
+            COMPONENT_TEST: ${{COMPONENT_TEST}}
+          commands:
+            - |-
+              sleep 2m
+              cd postman
+              newman run ${{CF_REPO_NAME}}.positive.postman_collection.json -e ${{CF_REPO_NAME}}.positive.environment.json
+              newman run ${{CF_REPO_NAME}}.negative.postman_collection.json -e ${{CF_REPO_NAME}}.negative.environment.json
+          services:
+            composition: 'docker-compose.yaml'
+          when:
+            condition:
+              all:
+                projectType: String('${{WCF_PROJECT_TYPE}}') == 'maven'
+                skipDockerBuild: String('${{WCF_SKIP_DOCKER_BUILD}}') != 'true'
+                whenDockerComposeExist: String('${{COMPONENT_TEST}}') == 'true'
