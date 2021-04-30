@@ -32,7 +32,7 @@ services:
         KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
       - 'KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093'
       - >-
-        KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://localhost:9092,EXTERNAL://localhost:9093
+        KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
       - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
     depends_on:
       - zookeeper
@@ -63,8 +63,10 @@ services:
       retries: 5
     depends_on:
       - kafka
-  newman_component_test:
-    image: byrnedo/alpine-curl
+      - postgres
+  component-test:
+    container_name: health-check
+    image: "byrnedo/alpine-curl"
     command: 'http://reference-domain-service'
     depends_on: 
       reference-domain-service:
