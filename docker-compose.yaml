@@ -34,7 +34,7 @@ services:
       - >-
         KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://localhost:9092,EXTERNAL://localhost:9093
       - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
-    links:
+    depends_on:
       - zookeeper
   reference-domain-service:
     container_name: reference-domain-service
@@ -61,12 +61,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      
     depends_on:
       - kafka
   newman_component_test:
-    image: iflavoursbv/newman-alpine
-    command: bash -c "pwd && ls -lrt"
+    image: byrnedo/alpine-curl
+    command: 'http://reference-domain-service'
     depends_on: 
       reference-domain-service:
         condition: service_healthy
