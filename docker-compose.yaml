@@ -42,7 +42,7 @@ services:
     volumes:
       - './test/secrets/secrets.properties:/data/secrets.properties'
     ports:
-      - 9102
+      - 80
     environment:
       - 'SPRING_CLOUD_STREAM_KAFKA_BINDER_ERS=kafka:9092'
       - SPRING_DATA_MONGODB_HOST=mongodb
@@ -56,6 +56,12 @@ services:
       - SPRING_DATA_MONGODB_USERNAME=my-user
       - SPRING_DATA_MONGODB_PASSWORD=my-password
       - SECRETSVOL=/data/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      
     depends_on:
       - kafka
   newman_component_test:
