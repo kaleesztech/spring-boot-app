@@ -1,0 +1,64 @@
+{
+	"id": "b7e6bdbe-0487-42c5-952c-7ae0b269028d",
+	"name": "localhost-postive",
+	"values": [
+		{
+			"key": "host",
+			"value": "reference-domain-service",
+			"enabled": true
+		},
+		{
+			"key": "port",
+			"value": "9102",
+			"enabled": true
+		},
+		{
+			"key": "aggregateName",
+			"value": "aggregateName",
+			"enabled": true
+		},
+		{
+			"key": "updateAggregateName",
+			"value": "aggregate44",
+			"enabled": true
+		},
+		{
+			"key": "aggregateId",
+			"value": "44",
+			"enabled": true
+		},
+		{
+			"key": "actionId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "actionName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "domainPort",
+			"value": "8888",
+			"enabled": true
+		},
+		{
+			"key": "aclPort",
+			"value": "8889",
+			"enabled": true
+		},
+		{
+			"key": "sagaPort",
+			"value": "8890",
+			"enabled": true
+		},
+		{
+			"key": "ingressPort",
+			"value": "9080/api",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-02-28T19:14:01.426Z",
+	"_postman_exported_using": "Postman/7.19.1"
+}

@@ -1,0 +1,264 @@
+{
+  "info": {
+    "_postman_id": "93080503-1b3d-42a8-ba37-cd988f106c98",
+    "name": "reference-domain-service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Aggregate",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d5818138-89ac-4809-9bfa-d5b7534731ac",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful Aggregate creation \", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/api/aggregate/{{aggregateId}}/create/{{aggregateName}}",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "api",
+            "aggregate",
+            "{{aggregateId}}",
+            "create",
+            "{{aggregateName}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Aggregate By ID",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d5818138-89ac-4809-9bfa-d5b7534731ac",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful get aggregateId \", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});",
+              "pm.test(\"Successful get aggregate jsonData \", function () {\r",
+              "var jsonData = pm.response.json();\r",
+              "pm.expect(jsonData.aggregateId).to.eql(pm.environment.get(\"aggregateId\"));\r",
+              "pm.expect(jsonData.aggregateName).to.eql(pm.environment.get(\"aggregateName\"));\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/api/aggregate/{{aggregateId}}",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "api",
+            "aggregate",
+            "{{aggregateId}}" 
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Aggregate Name",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d5818138-89ac-4809-9bfa-d5b7534731ac",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful Aggregate Update \", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/api/aggregate/{{aggregateId}}/update/{{updateAggregateName}}",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "api",
+            "aggregate",
+            "{{aggregateId}}",
+            "update",
+            "{{updateAggregateName}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel Aggregate",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d5818138-89ac-4809-9bfa-d5b7534731ac",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful Cancel Aggregate \", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/api/aggregate/{{aggregateId}}/cancel",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "api",
+            "aggregate",
+            "{{aggregateId}}",
+            "cancel"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Aggregate",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d5818138-89ac-4809-9bfa-d5b7534731ac",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful Aggregate creation \", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/api/aggregate/{{aggregateId}}/create/{{aggregateName}}",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "api",
+            "aggregate",
+            "{{aggregateId}}",
+            "create",
+            "{{aggregateName}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "0ff3b9f1-0f28-4405-819f-dc640d1c1897",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "3f9174cb-5d52-4f5d-a65b-d24c6839f79a",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
